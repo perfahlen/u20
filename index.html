@@ -50,7 +50,7 @@
     }
 
     #progress-bar {
-      position: fixed; top: 0; left: 0; height: 3px; z-index: 100;
+      position: fixed; top: 0; left: 0; height: 6px; z-index: 100;
       background: linear-gradient(90deg, var(--ice-d), var(--ice), var(--green));
       width: 0%;
     }
@@ -75,21 +75,21 @@
       background: rgba(74,144,217,.25);
       border: 1px solid rgba(74,144,217,.45);
       color: var(--ice);
-      font-size: clamp(.55rem, 1vw, .7rem);
+      font-size: clamp(1rem, 1.6vw, 1.4rem);
       font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-      padding: .25rem .9rem; border-radius: 20px; margin-bottom: .45rem;
+      padding: .4rem 1.4rem; border-radius: 20px; margin-bottom: .6rem;
     }
     h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.2rem, 6vw, 5rem);
-      letter-spacing: 6px; line-height: 1;
+      font-size: clamp(4rem, 9vw, 9rem);
+      letter-spacing: 8px; line-height: 1;
       background: linear-gradient(160deg, #fff 30%, var(--ice) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       filter: drop-shadow(0 0 26px rgba(127,212,255,.35));
     }
     .tagline {
       margin-top: .3rem;
-      font-size: clamp(.55rem, 1vw, .75rem); letter-spacing: 4px; text-transform: uppercase;
+      font-size: clamp(.9rem, 1.5vw, 1.4rem); letter-spacing: 5px; text-transform: uppercase;
       color: rgba(255,255,255,.4);
     }
 
@@ -113,13 +113,13 @@
       padding: .7rem 1.2rem;
     }
     .card-header h2 {
-      font-size: clamp(.65rem, 1.2vw, .82rem);
+      font-size: clamp(1.1rem, 1.8vw, 1.6rem);
       font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ice);
     }
     .badge-green {
       background: rgba(111,207,151,.18); border: 1px solid rgba(111,207,151,.4);
-      color: var(--green); font-size: .58rem; font-weight: 700; letter-spacing: 2px;
-      padding: .15rem .5rem; border-radius: 8px; text-transform: uppercase; flex-shrink: 0;
+      color: var(--green); font-size: 1rem; font-weight: 700; letter-spacing: 2px;
+      padding: .3rem .8rem; border-radius: 8px; text-transform: uppercase; flex-shrink: 0;
     }
 
     .campaign {
@@ -129,8 +129,8 @@
       flex-shrink: 0;
     }
     .campaign p {
-      font-size: clamp(.8rem, 1.5vw, .98rem);
-      line-height: 1.8; color: rgba(255,255,255,.88);
+      font-size: clamp(1.1rem, 2vw, 1.8rem);
+      line-height: 1.75; color: rgba(255,255,255,.88);
     }
     .hl  { color: var(--ice);   font-weight: 700; }
     .hl-g{ color: var(--green); font-weight: 700; }
@@ -153,14 +153,14 @@
       pointer-events: none;
     }
     .cd-label {
-      font-size: clamp(.58rem, 1vw, .72rem); letter-spacing: 4px; text-transform: uppercase;
+      font-size: clamp(1rem, 1.5vw, 1.3rem); letter-spacing: 4px; text-transform: uppercase;
       color: rgba(255,255,255,.45); margin-bottom: clamp(.6rem,2vh,1.2rem);
     }
     .cd-match {
-      font-size: clamp(.65rem, 1.1vw, .8rem); letter-spacing: 1px;
+      font-size: clamp(1rem, 1.6vw, 1.5rem); letter-spacing: 1px;
       color: var(--ice); font-weight: 600;
       margin-bottom: clamp(.5rem,1.5vh,1rem);
-      opacity: .85;
+      opacity: .9;
     }
     .cd-units { display: flex; justify-content: center; align-items: flex-start; gap: clamp(.5rem,1.5vw,1.2rem); }
     .cd-unit  { text-align: center; }
@@ -174,12 +174,12 @@
     }
     .cd-num {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-size: clamp(4.5rem, 9vw, 9rem);
       line-height: 1; color: #fff;
       text-shadow: 0 0 30px rgba(127,212,255,.7), 0 0 60px rgba(127,212,255,.3);
     }
-    .cd-txt { font-size: clamp(.5rem,.9vw,.65rem); letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: .2rem; }
-    .cd-sep { font-size: clamp(2rem,4vw,3.5rem); line-height: 1.15; color: rgba(74,144,217,.5); align-self: center; font-family: 'Bebas Neue', sans-serif; }
+    .cd-txt { font-size: clamp(.8rem,1.3vw,1.1rem); letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: .3rem; }
+    .cd-sep { font-size: clamp(3rem,6vw,5.5rem); line-height: 1.1; color: rgba(74,144,217,.5); align-self: center; font-family: 'Bebas Neue', sans-serif; }
 
     /* INFO VIEW TWO-COLUMN GRID */
     .info-body {
@@ -197,22 +197,22 @@
 
     .game {
       display: grid;
-      grid-template-columns: 76px 58px 1fr;
-      gap: .5rem;
-      padding: .65rem 1.2rem;
+      grid-template-columns: 110px 90px 1fr;
+      gap: .6rem;
+      padding: 1rem 1.4rem;
       border-bottom: 1px solid rgba(255,255,255,.05);
       align-items: center;
     }
     .game:last-child { border-bottom: none; }
-    .game.next { background: rgba(74,144,217,.14); border-left: 3px solid var(--ice-d); }
+    .game.next { background: rgba(74,144,217,.14); border-left: 4px solid var(--ice-d); }
     .game.past  { opacity: .4; }
 
-    .g-date { font-size: .76rem; font-weight: 700; color: var(--ice); }
-    .g-day  { font-size: .6rem;  color: rgba(255,255,255,.38); }
-    .g-time { font-size: .88rem; font-weight: 700; }
-    .g-team { font-size: .8rem;  font-weight: 600; }
-    .g-vs   { font-size: .66rem; color: rgba(255,255,255,.48); margin-top: .08rem; }
-    .g-venue{ font-size: .58rem; color: var(--green); font-weight: 600; letter-spacing: 1px; margin-top: .08rem; }
+    .g-date { font-size: clamp(1rem, 1.6vw, 1.5rem); font-weight: 700; color: var(--ice); }
+    .g-day  { font-size: clamp(.8rem, 1.2vw, 1.1rem); color: rgba(255,255,255,.38); }
+    .g-time { font-size: clamp(1.2rem, 2vw, 1.9rem); font-weight: 700; }
+    .g-team { font-size: clamp(1rem, 1.7vw, 1.6rem); font-weight: 600; }
+    .g-vs   { font-size: clamp(.85rem, 1.3vw, 1.2rem); color: rgba(255,255,255,.48); margin-top: .1rem; }
+    .g-venue{ font-size: clamp(.75rem, 1.1vw, 1rem); color: var(--green); font-weight: 600; letter-spacing: 1px; margin-top: .1rem; }
 
     /* VIEW 2 */
     #view-qr {
@@ -221,7 +221,7 @@
       gap: .6vh;
     }
     #view-qr .hdr { margin-bottom: 0; }
-    #view-qr .hdr h1 { font-size: clamp(1.4rem, 3.5vw, 3rem); }
+    #view-qr .hdr h1 { font-size: clamp(3rem, 7vw, 7rem); }
     #view-qr .divider { margin: 0; }
     #view-qr .footer { margin-top: 0; }
 
@@ -260,8 +260,8 @@
     }
     .cta-swish {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.2rem, 3vw, 2.4rem);
-      letter-spacing: 7px;
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      letter-spacing: 10px;
       animation: glow 2.2s ease-in-out infinite;
     }
     @keyframes glow {
