@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SH U20 mot Nationell – Sundsvall Hockey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary:   #253649;
+      --primary-d: #1a2a38;
+      --ice:       #7FD4FF;
+      --ice-d:     #4A90D9;
+      --green:     #4A90D9;
+      --white:     #FFFFFF;
+    }
+
+    html, body {
+      height: 100%; width: 100%;
+      background: var(--primary);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 55% 55% at 20% 50%, rgba(74,144,217,.13) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 15%, rgba(74,144,217,.08) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 35% at 75% 85%, rgba(111,207,151,.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    #particles { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .p {
+      position: absolute; border-radius: 50%;
+      background: rgba(127,212,255,.5);
+      animation: rise linear infinite;
+    }
+    @keyframes rise {
+      0%   { transform: translateY(105vh) scale(1); opacity: 0; }
+      5%   { opacity: 1; }
+      95%  { opacity: .35; }
+      100% { transform: translateY(-5vh) scale(.3); opacity: 0; }
+    }
+
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 100;
+      background: linear-gradient(90deg, var(--ice-d), var(--ice), var(--green));
+      width: 0%;
+    }
+
+    #wrapper { position: relative; z-index: 1; width: 100vw; height: 100vh; }
+
+    .view {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      padding: clamp(.8rem, 2vh, 1.6rem) clamp(1rem, 3vw, 2.5rem);
+      gap: clamp(.6rem, 1.5vh, 1.2rem);
+      opacity: 0;
+      transition: opacity .8s ease;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .view.active { opacity: 1; pointer-events: auto; }
+
+    .hdr { text-align: center; flex-shrink: 0; }
+    .pill {
+      display: inline-block;
+      background: rgba(74,144,217,.25);
+      border: 1px solid rgba(74,144,217,.45);
+      color: var(--ice);
+      font-size: clamp(.55rem, 1vw, .7rem);
+      font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+      padding: .25rem .9rem; border-radius: 20px; margin-bottom: .45rem;
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      letter-spacing: 6px; line-height: 1;
+      background: linear-gradient(160deg, #fff 30%, var(--ice) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 26px rgba(127,212,255,.35));
+    }
+    .tagline {
+      margin-top: .3rem;
+      font-size: clamp(.55rem, 1vw, .75rem); letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+
+    .divider {
+      height: 1px; flex-shrink: 0;
+      background: linear-gradient(90deg, transparent, var(--ice-d), var(--green), var(--ice-d), transparent);
+      animation: shimmer 4s ease-in-out infinite;
+    }
+    @keyframes shimmer { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+    .card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 14px;
+    }
+    .card-header {
+      display: flex; align-items: center; gap: .7rem;
+      background: rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px 14px 0 0;
+      padding: .7rem 1.2rem;
+    }
+    .card-header h2 {
+      font-size: clamp(.65rem, 1.2vw, .82rem);
+      font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ice);
+    }
+    .badge-green {
+      background: rgba(111,207,151,.18); border: 1px solid rgba(111,207,151,.4);
+      color: var(--green); font-size: .58rem; font-weight: 700; letter-spacing: 2px;
+      padding: .15rem .5rem; border-radius: 8px; text-transform: uppercase; flex-shrink: 0;
+    }
+
+    .campaign {
+      border-left: 4px solid var(--ice-d);
+      padding: 1rem 1.3rem;
+      border-radius: 0 14px 14px 0;
+      flex-shrink: 0;
+    }
+    .campaign p {
+      font-size: clamp(.8rem, 1.5vw, .98rem);
+      line-height: 1.8; color: rgba(255,255,255,.88);
+    }
+    .hl  { color: var(--ice);   font-weight: 700; }
+    .hl-g{ color: var(--green); font-weight: 700; }
+
+    .countdown {
+      flex: 1;
+      background: linear-gradient(160deg, rgba(20,36,58,.97) 0%, rgba(37,64,100,.97) 100%);
+      border: 1px solid rgba(74,144,217,.45);
+      border-radius: 16px;
+      padding: clamp(1rem,3vh,2.2rem) 1.5rem;
+      text-align: center;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      position: relative; overflow: hidden;
+      box-shadow: 0 0 40px rgba(74,144,217,.18), inset 0 1px 0 rgba(255,255,255,.07);
+    }
+    .countdown::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(74,144,217,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cd-label {
+      font-size: clamp(.58rem, 1vw, .72rem); letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(255,255,255,.45); margin-bottom: clamp(.6rem,2vh,1.2rem);
+    }
+    .cd-match {
+      font-size: clamp(.65rem, 1.1vw, .8rem); letter-spacing: 1px;
+      color: var(--ice); font-weight: 600;
+      margin-bottom: clamp(.5rem,1.5vh,1rem);
+      opacity: .85;
+    }
+    .cd-units { display: flex; justify-content: center; align-items: flex-start; gap: clamp(.5rem,1.5vw,1.2rem); }
+    .cd-unit  { text-align: center; }
+    .cd-box {
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(74,144,217,.3);
+      border-radius: 12px;
+      padding: clamp(.4rem,1.2vh,.9rem) clamp(.6rem,1.5vw,1.1rem);
+      min-width: clamp(3.5rem,7vw,5.5rem);
+      box-shadow: 0 2px 12px rgba(0,0,0,.3);
+    }
+    .cd-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1; color: #fff;
+      text-shadow: 0 0 30px rgba(127,212,255,.7), 0 0 60px rgba(127,212,255,.3);
+    }
+    .cd-txt { font-size: clamp(.5rem,.9vw,.65rem); letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: .2rem; }
+    .cd-sep { font-size: clamp(2rem,4vw,3.5rem); line-height: 1.15; color: rgba(74,144,217,.5); align-self: center; font-family: 'Bebas Neue', sans-serif; }
+
+    /* INFO VIEW TWO-COLUMN GRID */
+    .info-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(.8rem, 2vw, 1.6rem);
+      flex: 1;
+      min-height: 0;
+    }
+    .info-left  { display: flex; flex-direction: column; gap: clamp(.6rem, 1.5vh, 1.1rem); min-height: 0; }
+    .info-right { display: flex; flex-direction: column; min-height: 0; }
+
+    #schedule { flex: 1; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+    .games-wrap { flex: 1; overflow: hidden; }
+
+    .game {
+      display: grid;
+      grid-template-columns: 76px 58px 1fr;
+      gap: .5rem;
+      padding: .65rem 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      align-items: center;
+    }
+    .game:last-child { border-bottom: none; }
+    .game.next { background: rgba(74,144,217,.14); border-left: 3px solid var(--ice-d); }
+    .game.past  { opacity: .4; }
+
+    .g-date { font-size: .76rem; font-weight: 700; color: var(--ice); }
+    .g-day  { font-size: .6rem;  color: rgba(255,255,255,.38); }
+    .g-time { font-size: .88rem; font-weight: 700; }
+    .g-team { font-size: .8rem;  font-weight: 600; }
+    .g-vs   { font-size: .66rem; color: rgba(255,255,255,.48); margin-top: .08rem; }
+    .g-venue{ font-size: .58rem; color: var(--green); font-weight: 600; letter-spacing: 1px; margin-top: .08rem; }
+
+    /* VIEW 2 */
+    #view-qr {
+      justify-content: center; align-items: center;
+      padding: 1vh 1vw;
+      gap: .6vh;
+    }
+    #view-qr .hdr { margin-bottom: 0; }
+    #view-qr .hdr h1 { font-size: clamp(1.4rem, 3.5vw, 3rem); }
+    #view-qr .divider { margin: 0; }
+    #view-qr .footer { margin-top: 0; }
+
+    .qr-stage {
+      display: flex; flex-direction: column; align-items: center;
+      gap: .5vh;
+      flex-shrink: 0;
+    }
+    .qr-sublabel {
+      font-size: clamp(.52rem, .9vw, .65rem); letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    .qr-glow-wrap {
+      position: relative; line-height: 0;
+      filter: drop-shadow(0 0 30px rgba(127,212,255,.3));
+    }
+    .qr-glow-wrap::after {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 16px;
+      background: conic-gradient(from 0deg, var(--ice-d), var(--ice), var(--green), var(--ice), var(--ice-d));
+      z-index: -1;
+      animation: spin 6s linear infinite;
+      filter: blur(8px);
+      opacity: .8;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .qr-img {
+      display: block;
+      width: auto;
+      height: 88vh;
+      max-width: 88vw;
+      border-radius: 14px;
+      background: #fff;
+    }
+    .cta-swish {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 2.4rem);
+      letter-spacing: 7px;
+      animation: glow 2.2s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0%,100% { color: var(--ice);  text-shadow: 0 0 22px rgba(127,212,255,.45); }
+      50%     { color: #fff;        text-shadow: 0 0 46px rgba(127,212,255,1); }
+    }
+    .swish-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 2rem);
+      letter-spacing: 6px; color: #fff;
+      text-shadow: 0 0 18px rgba(255,255,255,.3);
+    }
+    .scan-hint {
+      font-size: clamp(.55rem, .9vw, .72rem);
+      color: rgba(255,255,255,.5); line-height: 1.5; text-align: center;
+    }
+
+    .footer {
+      text-align: center; flex-shrink: 0;
+      font-size: .55rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(255,255,255,.18);
+    }
+
+    #dots {
+      position: fixed; bottom: 1.1rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: .5rem; z-index: 100;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.25);
+      transition: background .4s, transform .4s;
+    }
+    .dot.on { background: var(--ice); transform: scale(1.35); }
+  </style>
+</head>
+<body>
+
+<div id="particles"></div>
+<div id="progress-bar"></div>
+
+
+<div id="wrapper">
+
+  <!-- VIEW 1: INFO -->
+  <div class="view active" id="view-info">
+    <header class="hdr">
+      <div class="pill">🏒 Sundsvall Hockey &nbsp;·&nbsp; U20 &nbsp;·&nbsp; Nationell Kvalserien</div>
+      <h1>SH U20 mot Nationell</h1>
+      <p class="tagline">U20 Nationell &nbsp;·&nbsp; Kvalserien 2025–26 &nbsp;·&nbsp; Brandcode Center</p>
+    </header>
+    <div class="divider"></div>
+    <div class="info-body">
+      <div class="info-left">
+        <div class="card campaign">
+          <p>
+            <span class="hl">Sundsvall Hockey U20</span> spelar kval för att nå Nationell serie!
+            Kvalserien bekostar vi på egen hand — vi är därför tacksamma för
+            <span class="hl">alla bidrag!</span>
+            &nbsp; Kom gärna till <span class="hl-g">Brandcode Center</span> och heja fram oss. 🎉
+          </p>
+        </div>
+        <div class="countdown" id="countdown-card">
+          <div class="cd-label">⏱&nbsp; Nästa hemmamatch startar om</div>
+          <div class="cd-match" id="cd-match"></div>
+          <div class="cd-units">
+            <div class="cd-unit"><div class="cd-box"><div class="cd-num" id="cd-d">--</div></div><div class="cd-txt">Dagar</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit"><div class="cd-box"><div class="cd-num" id="cd-h">--</div></div><div class="cd-txt">Timmar</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit"><div class="cd-box"><div class="cd-num" id="cd-m">--</div></div><div class="cd-txt">Min</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-unit"><div class="cd-box"><div class="cd-num" id="cd-s">--</div></div><div class="cd-txt">Sek</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="info-right">
+      <div class="card" id="schedule">
+      <div class="card-header">
+        <h2>🏟️ Hemmamatcher &nbsp;·&nbsp; Brandcode Center</h2>
+        <span class="badge-green">HEMMA</span>
+      </div>
+      <div class="games-wrap">
+        <div class="game" data-ts="2026-03-17T19:15:00">
+          <div><div class="g-date">17 Mar</div><div class="g-day">Tisdag</div></div>
+          <div class="g-time">19:15</div>
+          <div><div class="g-team">IF Sundsvall Hockey</div><div class="g-vs">mot Örnsköldsvik HF</div><div class="g-venue">📍 Brandcode Center</div></div>
+        </div>
+        <div class="game" data-ts="2026-03-28T15:00:00">
+          <div><div class="g-date">28 Mar</div><div class="g-day">Lördag</div></div>
+          <div class="g-time">15:00</div>
+          <div><div class="g-team">IF Sundsvall Hockey</div><div class="g-vs">mot Skellefteå AIK</div><div class="g-venue">📍 Brandcode Center</div></div>
+        </div>
+        <div class="game" data-ts="2026-03-29T12:15:00">
+          <div><div class="g-date">29 Mar</div><div class="g-day">Söndag</div></div>
+          <div class="g-time">12:15</div>
+          <div><div class="g-team">IF Sundsvall Hockey</div><div class="g-vs">mot IF Björklöven</div><div class="g-venue">📍 Brandcode Center</div></div>
+        </div>
+        <div class="game" data-ts="2026-04-05T17:00:00">
+          <div><div class="g-date">5 Apr</div><div class="g-day">Söndag</div></div>
+          <div class="g-time">17:00</div>
+          <div><div class="g-team">IF Sundsvall Hockey</div><div class="g-vs">mot Sollentuna HC</div><div class="g-venue">📍 Brandcode Center</div></div>
+        </div>
+        <div class="game" data-ts="2026-04-06T17:00:00">
+          <div><div class="g-date">6 Apr</div><div class="g-day">Måndag</div></div>
+          <div class="g-time">17:00</div>
+          <div><div class="g-team">IF Sundsvall Hockey</div><div class="g-vs">mot Huddinge IK</div><div class="g-venue">📍 Brandcode Center</div></div>
+        </div>
+      </div>
+    </div>
+      </div><!-- /info-right -->
+    </div><!-- /info-body -->
+    <footer class="footer">Sundsvall Hockey &nbsp;·&nbsp; U20 Nationell Kvalserien 2025–26</footer>
+  </div>
+
+  <!-- VIEW 2: QR / SWISH -->
+  <div class="view" id="view-qr">
+    <div class="qr-stage">
+      <h1 style="margin-bottom:.2vh;">SH U20 mot Nationell</h1>
+      <div class="qr-glow-wrap">
+        <img class="qr-img" src="swish-qr.png" alt="Swish QR-kod – Sundsvall Hockey U20">
+      </div>
+      <div class="cta-swish">SWISHA NU! 💙</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /* Particles */
+  (function () {
+    const wrap = document.getElementById('particles');
+    for (let i = 0; i < 28; i++) {
+      const el = document.createElement('div');
+      el.className = 'p';
+      const size = Math.random() * 3 + 1;
+      el.style.cssText = [
+        `left:${Math.random()*100}%`,
+        `width:${size}px`, `height:${size}px`,
+        `animation-duration:${(Math.random()*18+10).toFixed(1)}s`,
+        `animation-delay:-${(Math.random()*25).toFixed(1)}s`,
+        `opacity:${(Math.random()*.5+.1).toFixed(2)}`
+      ].join(';');
+      wrap.appendChild(el);
+    }
+  })();
+
+  /* Schedule: mark past & next */
+  const games = Array.from(document.querySelectorAll('.game[data-ts]'));
+  const now   = new Date();
+  let nextGame = null;
+  games.forEach(row => {
+    const t = new Date(row.dataset.ts);
+    if (t < now)        row.classList.add('past');
+    else if (!nextGame){ nextGame = t; row.classList.add('next'); }
+  });
+
+  /* Countdown */
+  const cdCard  = document.getElementById('countdown-card');
+  const cdMatch = document.getElementById('cd-match');
+  const cdD = document.getElementById('cd-d'), cdH = document.getElementById('cd-h'),
+        cdM = document.getElementById('cd-m'), cdS = document.getElementById('cd-s');
+
+  // find next game label from schedule rows
+  const nextRow = document.querySelector('.game.next');
+  if (nextRow && cdMatch) {
+    const vs = nextRow.querySelector('.g-vs')?.textContent || '';
+    const date = nextRow.querySelector('.g-date')?.textContent || '';
+    const time = nextRow.querySelector('.g-time')?.textContent || '';
+    cdMatch.textContent = `${date} · ${time} · IF Sundsvall Hockey ${vs}`;
+  }
+
+  function tick() {
+    if (!nextGame) { cdCard.style.display = 'none'; return; }
+    const diff = nextGame - new Date();
+    if (diff <= 0)  { cdCard.style.display = 'none'; return; }
+    cdD.textContent = String(Math.floor(diff / 86400000)).padStart(2,'0');
+    cdH.textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+    cdM.textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    cdS.textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* View toggle every 10 s */
+  const INTERVAL = 10000;
+  const views    = [document.getElementById('view-info'), document.getElementById('view-qr')];
+  const bar      = document.getElementById('progress-bar');
+  let   current  = 0;
+
+  function startBar() {
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      bar.style.transition = `width ${INTERVAL}ms linear`;
+      bar.style.width = '100%';
+    }));
+  }
+
+  function switchView() {
+    views[current].classList.remove('active');
+    current = (current + 1) % views.length;
+    views[current].classList.add('active');
+    startBar();
+  }
+
+  startBar();
+  setInterval(switchView, INTERVAL);
+</script>
+</body>
+</html>
