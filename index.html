@@ -60,8 +60,8 @@
     .view {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
-      padding: clamp(.8rem, 2vh, 1.6rem) clamp(1rem, 3vw, 2.5rem);
-      gap: clamp(.6rem, 1.5vh, 1.2rem);
+      padding: 0.8vh 1.8vw;
+      gap: 0.8vh;
       opacity: 0;
       transition: opacity .8s ease;
       pointer-events: none;
@@ -75,21 +75,21 @@
       background: rgba(74,144,217,.25);
       border: 1px solid rgba(74,144,217,.45);
       color: var(--ice);
-      font-size: clamp(1rem, 1.6vw, 1.4rem);
+      font-size: clamp(.7rem, 1.3vh, 1rem);
       font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-      padding: .4rem 1.4rem; border-radius: 20px; margin-bottom: .6rem;
+      padding: .2rem 1rem; border-radius: 20px; margin-bottom: .3rem;
     }
     h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 9vw, 9rem);
-      letter-spacing: 8px; line-height: 1;
+      font-size: clamp(2.5rem, 8.5vh, 6rem);
+      letter-spacing: 7px; line-height: 1;
       background: linear-gradient(160deg, #fff 30%, var(--ice) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       filter: drop-shadow(0 0 26px rgba(127,212,255,.35));
     }
     .tagline {
-      margin-top: .3rem;
-      font-size: clamp(.9rem, 1.5vw, 1.4rem); letter-spacing: 5px; text-transform: uppercase;
+      margin-top: .15rem;
+      font-size: clamp(.6rem, 1.2vh, .9rem); letter-spacing: 4px; text-transform: uppercase;
       color: rgba(255,255,255,.4);
     }
 
@@ -106,31 +106,31 @@
       border-radius: 14px;
     }
     .card-header {
-      display: flex; align-items: center; gap: .7rem;
+      display: flex; align-items: center; gap: .6rem;
       background: rgba(255,255,255,.04);
       border-bottom: 1px solid rgba(255,255,255,.07);
       border-radius: 14px 14px 0 0;
-      padding: .7rem 1.2rem;
+      padding: .55vh 1.2vw;
     }
     .card-header h2 {
-      font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+      font-size: clamp(.75rem, 1.6vh, 1.2rem);
       font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ice);
     }
     .badge-green {
       background: rgba(111,207,151,.18); border: 1px solid rgba(111,207,151,.4);
-      color: var(--green); font-size: 1rem; font-weight: 700; letter-spacing: 2px;
-      padding: .3rem .8rem; border-radius: 8px; text-transform: uppercase; flex-shrink: 0;
+      color: var(--green); font-size: clamp(.65rem, 1.2vh, .9rem); font-weight: 700; letter-spacing: 2px;
+      padding: .2rem .6rem; border-radius: 8px; text-transform: uppercase; flex-shrink: 0;
     }
 
     .campaign {
       border-left: 4px solid var(--ice-d);
-      padding: 1rem 1.3rem;
+      padding: .8vh 1.2vw;
       border-radius: 0 14px 14px 0;
       flex-shrink: 0;
     }
     .campaign p {
-      font-size: clamp(1.1rem, 2vw, 1.8rem);
-      line-height: 1.75; color: rgba(255,255,255,.88);
+      font-size: clamp(.8rem, 1.9vh, 1.3rem);
+      line-height: 1.6; color: rgba(255,255,255,.88);
     }
     .hl  { color: var(--ice);   font-weight: 700; }
     .hl-g{ color: var(--green); font-weight: 700; }
@@ -140,7 +140,7 @@
       background: linear-gradient(160deg, rgba(20,36,58,.97) 0%, rgba(37,64,100,.97) 100%);
       border: 1px solid rgba(74,144,217,.45);
       border-radius: 16px;
-      padding: clamp(1rem,3vh,2.2rem) 1.5rem;
+      padding: 1.5vh 1vw;
       text-align: center;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
       position: relative; overflow: hidden;
@@ -153,43 +153,43 @@
       pointer-events: none;
     }
     .cd-label {
-      font-size: clamp(1rem, 1.5vw, 1.3rem); letter-spacing: 4px; text-transform: uppercase;
-      color: rgba(255,255,255,.45); margin-bottom: clamp(.6rem,2vh,1.2rem);
+      font-size: clamp(.65rem, 1.3vh, 1rem); letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(255,255,255,.45); margin-bottom: 1vh;
     }
     .cd-match {
-      font-size: clamp(1rem, 1.6vw, 1.5rem); letter-spacing: 1px;
+      font-size: clamp(.75rem, 1.6vh, 1.1rem); letter-spacing: 1px;
       color: var(--ice); font-weight: 600;
-      margin-bottom: clamp(.5rem,1.5vh,1rem);
+      margin-bottom: 1.2vh;
       opacity: .9;
     }
-    .cd-units { display: flex; justify-content: center; align-items: flex-start; gap: clamp(.5rem,1.5vw,1.2rem); }
+    .cd-units { display: flex; justify-content: center; align-items: flex-start; gap: clamp(.4rem,1.2vw,.9rem); }
     .cd-unit  { text-align: center; }
     .cd-box {
       background: rgba(0,0,0,.35);
       border: 1px solid rgba(74,144,217,.3);
-      border-radius: 12px;
-      padding: clamp(.4rem,1.2vh,.9rem) clamp(.6rem,1.5vw,1.1rem);
-      min-width: clamp(3.5rem,7vw,5.5rem);
+      border-radius: 10px;
+      padding: .6vh .8vw;
+      min-width: clamp(2.8rem,5.5vw,4.5rem);
       box-shadow: 0 2px 12px rgba(0,0,0,.3);
     }
     .cd-num {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4.5rem, 9vw, 9rem);
+      font-size: clamp(2.8rem, 8.5vh, 6rem);
       line-height: 1; color: #fff;
       text-shadow: 0 0 30px rgba(127,212,255,.7), 0 0 60px rgba(127,212,255,.3);
     }
-    .cd-txt { font-size: clamp(.8rem,1.3vw,1.1rem); letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: .3rem; }
-    .cd-sep { font-size: clamp(3rem,6vw,5.5rem); line-height: 1.1; color: rgba(74,144,217,.5); align-self: center; font-family: 'Bebas Neue', sans-serif; }
+    .cd-txt { font-size: clamp(.6rem,1.1vh,.85rem); letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: .2rem; }
+    .cd-sep { font-size: clamp(2rem,6vh,4rem); line-height: 1.1; color: rgba(74,144,217,.5); align-self: center; font-family: 'Bebas Neue', sans-serif; }
 
     /* INFO VIEW TWO-COLUMN GRID */
     .info-body {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(.8rem, 2vw, 1.6rem);
+      gap: 1.4vw;
       flex: 1;
       min-height: 0;
     }
-    .info-left  { display: flex; flex-direction: column; gap: clamp(.6rem, 1.5vh, 1.1rem); min-height: 0; }
+    .info-left  { display: flex; flex-direction: column; gap: .8vh; min-height: 0; }
     .info-right { display: flex; flex-direction: column; min-height: 0; }
 
     #schedule { flex: 1; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
@@ -197,9 +197,9 @@
 
     .game {
       display: grid;
-      grid-template-columns: 110px 90px 1fr;
-      gap: .6rem;
-      padding: 1rem 1.4rem;
+      grid-template-columns: 88px 72px 1fr;
+      gap: .4rem;
+      padding: .7vh 1vw;
       border-bottom: 1px solid rgba(255,255,255,.05);
       align-items: center;
     }
@@ -207,23 +207,20 @@
     .game.next { background: rgba(74,144,217,.14); border-left: 4px solid var(--ice-d); }
     .game.past  { opacity: .4; }
 
-    .g-date { font-size: clamp(1rem, 1.6vw, 1.5rem); font-weight: 700; color: var(--ice); }
-    .g-day  { font-size: clamp(.8rem, 1.2vw, 1.1rem); color: rgba(255,255,255,.38); }
-    .g-time { font-size: clamp(1.2rem, 2vw, 1.9rem); font-weight: 700; }
-    .g-team { font-size: clamp(1rem, 1.7vw, 1.6rem); font-weight: 600; }
-    .g-vs   { font-size: clamp(.85rem, 1.3vw, 1.2rem); color: rgba(255,255,255,.48); margin-top: .1rem; }
-    .g-venue{ font-size: clamp(.75rem, 1.1vw, 1rem); color: var(--green); font-weight: 600; letter-spacing: 1px; margin-top: .1rem; }
+    .g-date { font-size: clamp(.8rem, 1.7vh, 1.2rem); font-weight: 700; color: var(--ice); }
+    .g-day  { font-size: clamp(.65rem, 1.2vh, .9rem); color: rgba(255,255,255,.38); }
+    .g-time { font-size: clamp(.95rem, 2.2vh, 1.6rem); font-weight: 700; }
+    .g-team { font-size: clamp(.85rem, 1.8vh, 1.3rem); font-weight: 600; }
+    .g-vs   { font-size: clamp(.7rem, 1.4vh, 1rem); color: rgba(255,255,255,.48); margin-top: .05rem; }
+    .g-venue{ font-size: clamp(.6rem, 1.1vh, .85rem); color: var(--green); font-weight: 600; letter-spacing: 1px; margin-top: .05rem; }
 
     /* VIEW 2 */
     #view-qr {
       justify-content: center; align-items: center;
       padding: 1vh 1vw;
-      gap: .6vh;
+      gap: 1.2vh;
     }
-    #view-qr .hdr { margin-bottom: 0; }
-    #view-qr .hdr h1 { font-size: clamp(3rem, 7vw, 7rem); }
-    #view-qr .divider { margin: 0; }
-    #view-qr .footer { margin-top: 0; }
+    #view-qr .hdr h1 { font-size: clamp(2rem, 6.5vh, 4.5rem); }
 
     .qr-stage {
       display: flex; flex-direction: column; align-items: center;
@@ -253,14 +250,14 @@
     .qr-img {
       display: block;
       width: auto;
-      height: 88vh;
-      max-width: 88vw;
+      height: 74vh;
+      max-width: 85vw;
       border-radius: 14px;
       background: #fff;
     }
     .cta-swish {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 6rem);
+      font-size: clamp(2rem, 5.5vh, 4rem);
       letter-spacing: 10px;
       animation: glow 2.2s ease-in-out infinite;
     }
@@ -281,7 +278,7 @@
 
     .footer {
       text-align: center; flex-shrink: 0;
-      font-size: .55rem; letter-spacing: 2.5px; text-transform: uppercase;
+      font-size: clamp(.5rem, 1vh, .75rem); letter-spacing: 2.5px; text-transform: uppercase;
       color: rgba(255,255,255,.18);
     }
 
